@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- -->
+<link rel="stylesheet" href="shoes.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qwest/4.5.0/qwest.min.js"></script>
+<!--<script src="catalogue.json" charset="utf-8"></script>-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<title></title>
+</head>
+<body>
+
+  <script class="shoesTemp" type="text/handlebars-x">
+    <div id="container">
+    {{#each shoeData}}
+    <div id="shoeContainer">
+    <div id="shoeBrand">
+      <img src="{{image}}"><br>
+      <b>BRAND:</b> {{brand}}<br>
+      <b>COLOUR:</b> {{color}}<br>
+      <b>PRICE:</b> R{{price}}.00<br>
+      <b>IN STOCK:</b> {{in_stock}}<br>
+      <b>SIZES:</b> {{size}}<br>
+    </div>
+    </div>
+    {{/each}}
+   </div>
+  </script>
+
+  <script class="brandTemp" type="text/handlebars-x">
+  <div class="dropdown">
+    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" style="width:260px; font-size:18px;">Select shoe brand<span class="caret"></span></button>
+    <ul class="dropdown-menu">
+    <li name="brand" value="all"></li>
+    {{/each}}
+    {{#each brandData}}
+    <li name="brand" value="{{brand}}">{{brand}}</li></ul><br>
+    {{/each}}
+   </div>
+  </script>
+
+  <script class="colorTemp" type="text/handlebars-x">
+    <div>
+    <p>Select shoe colour</p>
+    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" style="width:260px; font-size:18px;">Select shoe color<span class="caret"></span></button>br>
+    {{#each colorData}}
+      <ul class="dropdown-menu" name="color" value="{{color}}">{{color}}</ul><br>
+    {{/each}}
+   </div>
+  </script>
+
+  <script class="sizeTemp" type="text/handlebars-x">
+    <div>
+    <p>Select shoe size</p>
+    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" style="width:260px; font-size:18px;">Select shoe size<span class="caret"></span></button><br>
+    {{#each sizeData}}
+      <ul class="dropdown-menu" name="size" value="{{size}}">{{size}}</ul><br>
+    {{/each}}
+   </div>
+  </script>
+
+
+<div class="tranparency">
+  <p>L&S SHOE SHOP</p>
+  <div class="row">
+    <div class="col-sm-2">
+      <input id="searchTxt" type="text" class="form-control" name="search" placeholder="Search different shoes" style = "width:220px; background-color:#f4f0ef; font-size:16px; border:1px solid #995b6f; margin-left:2px;">
+    </div>
+    <div class="col-sm-7">
+      <button id="searchBtn" type="button" class="btn" style ="font-size:15px; width:100px; border:1px solid #995b6f;"><span class="glyphicon glyphicon-search"></span> Search</button>
+    </div>
+    <div class="col-sm-3">
+       <button id="addBtn" type="button" class="btn" data-toggle="modal" data-target="#myModal" style="height:35px; font-size:15px; border:1px solid #995b6f;" >Add New Stock</button>
+    </div>
+ </div>
+
+ <div class="row" style="margin:50px 0px 0px 35px;">
+  <div class="col-sm-4">
+    <div id="brand"></div>
+  </div>
+
+   <div class="col-sm-4">
+     <div id="color"></div>
+   </div>
+
+  <div class="col-sm-4">
+    <div id="size"></div>
+  </div>
+ </div>
+
+ <!--<div class="row">-->
+   <div class="panel panel-danger" style="margin:50px 50px 0px 50px;">
+   <div class="panel-heading" style="font-size:20px;">Available Shoes</div>
+   <div class="panel-body">
+     <div class="shoeList"></div>
+   </div>
+ </div>
+
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 style="font-weight:bolder; font-size:35px; font-style:italic;" class="modal-title">Add New Stock</h4>
+        </div>
+        <div class="modal-body">
+          <!-- <p style="font-weight:bold; font-size:20px; font-style:italic;">Add New Stock</p> -->
+          <input id="brandTxt" type="text" class="form-control" name="search" placeholder="Add shoe brand" style = "width:200px; background-color:#f4f0ef; font-size:16px; border: 0.5px solid #995b6f;">
+          <input id="priceTxt" type="text" class="form-control" name="search" placeholder="Add shoe price" style = "width:200px; background-color:#f4f0ef; font-size:16px; border: 0.5px solid #995b6f;">
+          <input id="colorTxt" type="text" class="form-control" name="search" placeholder="Add shoe colour" style = "width:200px; background-color:#f4f0ef; font-size:16px; border: 0.5px solid #995b6f;">
+          <input id="sizeTxt" type="text" class="form-control" name="search" placeholder="Add shoe size" style = "width:200px; background-color:#f4f0ef; font-size:16px; border: 0.5px solid #995b6f;">
+          <input id="stockTxt" type="text" class="form-control" name="search" placeholder="Add shoe stock" style = "width:200px; background-color:#f4f0ef; font-size:16px; border: 0.5px solid #995b6f;"><br>
+          <button id="addBtn" type="button" class="btn btn-danger" style="width:170px;font-size:16px; border:1px solid #995b6f;">Add New Stock</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script src="shoes.js" charset="utf-8"></script>
+</body>
+
+</html>

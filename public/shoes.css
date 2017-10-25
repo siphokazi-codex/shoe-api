@@ -1,0 +1,36 @@
+
+
+.tranparency::after {
+  background-image: url('background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+ opacity: 0.5;
+ position: absolute;
+ z-index: -1;
+ top: 0;
+ left: 0;
+ bottom: 0;
+ right: 0;
+ content: "";
+}
+
+p {
+  font-size: 80px;
+  color: #000714;
+  font-style: italic;
+  font-weight: bolder;
+  box-shadow: #820b02;
+  margin-bottom: 25px;
+  text-shadow: 0px 3px 5px rgba(130, 11, 2, .95);
+ }
+
+ #shoeBrand {
+  float: left;
+  margin-left: 3px;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-style: inset;
+  background-color: #fff;
+  color: #110900;
+  border-color: #f9989e;
+}
