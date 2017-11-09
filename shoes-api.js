@@ -173,25 +173,40 @@ module.exports = function(models) {
 
   const checkStock = function(req, res, next) {
 
-    var id = req.params.id;
-
+    var getId = req.params.id;
     models.Shoes.findOneAndUpdate({
-      _id: id
-    }, {
-      $inc: {
-        in_stock: -1
-      }
-    }, {
-      upsert: false
-    }, function(err, stockResults) {
-      if (err) {
-        return next(err);
+      _id: getId
+    }, function(err, data) {}).then(function(data) {
+      if (data.in_stock <= 0) {
+        res.json({
+          data: 'Out of stock'
+        });
       } else {
-        res.json(stockResults);
-      }
-    })
-  }
+        models.Shoes.findOneAndUpdate({
+          _id: req.params.id
+        }, {
+          $inc: {
+            'in_stock': -1
+          },
+        }, {
+          upsert: false
 
+        }, function(err, result) {
+          console.log(result);
+          if (err) {
+            return res.json({
+              sold: []
+            })
+          } else {
+            res.json({
+              sold: result
+            });
+          }
+        });
+      }
+    });
+
+  }
   const uniqueBrands = function(req, res, next) {
 
     models.Shoes.find({}, function(err, results) {
@@ -207,7 +222,9 @@ module.exports = function(models) {
       if (err) {
         console.log(err);
       } else {
-        res.json({brands: uniqueBrand.sort()})
+        res.json({
+          brands: uniqueBrand.sort()
+        })
       }
     })
   }
@@ -228,7 +245,9 @@ module.exports = function(models) {
       if (err) {
         console.log(err);
       } else {
-        res.json({colors: uniqueColor.sort()})
+        res.json({
+          colors: uniqueColor.sort()
+        })
       }
     })
   }
@@ -248,7 +267,9 @@ module.exports = function(models) {
       if (err) {
         console.log(err);
       } else {
-        res.json({sizes: uniqueSize.sort()})
+        res.json({
+          sizes: uniqueSize.sort()
+        })
       }
     })
   }

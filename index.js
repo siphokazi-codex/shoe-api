@@ -18,17 +18,26 @@ const models = Models(mongoURL);
 
 const shoesRoutes = ShoesRoutes(models);
 
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 * 30 }}));
+app.use(session({
+  secret: 'keyboard cat',
+  cookie: {
+    maxAge: 60000 * 30
+  }
+}));
 app.use(flash());
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
 
 //Including your public folder, to have access of the contents in there.
 app.use(express.static('public'))
 
 // parse application/x-www-form-urlencoded parser
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 
 // create application/json parser
 app.use(bodyParser.json())
@@ -48,11 +57,11 @@ app.get('/api/shoes/size/:size/color/:color', shoesRoutes.getColorAndSize);
 app.post('/api/shoes', shoesRoutes.addShoes);
 app.post('/api/shoes/sold/:id', shoesRoutes.checkStock);
 
-var server = app.listen(process.env.PORT || 3000, function () {
+var server = app.listen(process.env.PORT || 3000, function() {
 
- var host = server.address().address;
- var port = server.address().port;
+  var host = server.address().address;
+  var port = server.address().port;
 
- console.log('Shoe Catalogue API app listening at http://%s:%s', host, port);
+  console.log('Shoe Catalogue API app listening at http://%s:%s', host, port);
 
 });
