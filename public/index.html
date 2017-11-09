@@ -22,12 +22,14 @@
     {{#each shoeData}}
     <div id="shoeContainer">
     <div id="shoeBrand">
-      <img src="{{image}}"><br>
+      <img src="{{shoe_image}}"><br>
       <b>BRAND:</b> {{brand}}<br>
       <b>COLOUR:</b> {{color}}<br>
       <b>PRICE:</b> R{{price}}.00<br>
       <b>IN STOCK:</b> {{in_stock}}<br>
-      <b>SIZES:</b> {{size}}<br>
+      <b>SIZES:</b> {{size}}<br><br>
+      <input type="button" id="buyItem" class="btn btn-danger btn-lg" onclick="buyItem('{{_id}}')"style="font-size:14px;" value="Buy Shoe">
+
     </div>
     </div>
     {{/each}}
@@ -35,35 +37,30 @@
   </script>
 
   <script class="brandTemp" type="text/handlebars-x">
-  <div class="dropdown">
-    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" style="width:260px; font-size:18px;">Select shoe brand<span class="caret"></span></button>
-    <ul class="dropdown-menu">
-    <li name="brand" value="all"></li>
-    {{/each}}
-    {{#each brandData}}
-    <li name="brand" value="{{brand}}">{{brand}}</li></ul><br>
-    {{/each}}
-   </div>
+  <center><select id="brandClass" class="btn btn-danger">
+    <option value="" disabled selected="">Select shoe brand</option>
+      {{#each brandData}}
+        <option>{{this}}</option>
+      {{/each}}
+  </select></center>
   </script>
 
   <script class="colorTemp" type="text/handlebars-x">
-    <div>
-    <p>Select shoe colour</p>
-    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" style="width:260px; font-size:18px;">Select shoe color<span class="caret"></span></button>br>
-    {{#each colorData}}
-      <ul class="dropdown-menu" name="color" value="{{color}}">{{color}}</ul><br>
-    {{/each}}
-   </div>
+  <center><select id="colorClass" class="btn btn-danger">
+    <option value="" disabled selected="">Select shoe color</option>
+      {{#each colorData}}
+        <option>{{this}}</option>
+      {{/each}}
+  </select></center>
   </script>
 
   <script class="sizeTemp" type="text/handlebars-x">
-    <div>
-    <p>Select shoe size</p>
-    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" style="width:260px; font-size:18px;">Select shoe size<span class="caret"></span></button><br>
-    {{#each sizeData}}
-      <ul class="dropdown-menu" name="size" value="{{size}}">{{size}}</ul><br>
-    {{/each}}
-   </div>
+  <center><select id="sizeClass" class="btn btn-danger">
+    <option value="" disabled selected="">Select shoe size</option>
+      {{#each sizeData}}
+        <option>{{this}}</option>
+      {{/each}}
+  </select></center>
   </script>
 
 
@@ -81,21 +78,24 @@
     </div>
  </div>
 
- <div class="row" style="margin:50px 0px 0px 35px;">
-  <div class="col-sm-4">
+ <div class="row" style="margin:30px 0px 0px 10px;">
+  <div class="col-sm-3">
     <div id="brand"></div>
   </div>
 
-   <div class="col-sm-4">
+   <div class="col-sm-3">
      <div id="color"></div>
    </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     <div id="size"></div>
+  </div>
+
+  <div class="col-sm-3">
+    <button id="filterShoe" type="button" class="btn" name="filterButton" style ="font-size:15px; width:130px; border:1px solid #995b6f;"><span class="glyphicon glyphicon-search"></span> Filter Shoes</button>
   </div>
  </div>
 
- <!--<div class="row">-->
    <div class="panel panel-danger" style="margin:50px 50px 0px 50px;">
    <div class="panel-heading" style="font-size:20px;">Available Shoes</div>
    <div class="panel-body">
@@ -103,13 +103,11 @@
    </div>
  </div>
 
-</div>
-
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
 
       <!-- Modal content-->
-      <div class="modal-content">
+      <div id="addModal" class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 style="font-weight:bolder; font-size:35px; font-style:italic;" class="modal-title">Add New Stock</h4>
@@ -120,17 +118,15 @@
           <input id="priceTxt" type="text" class="form-control" name="search" placeholder="Add shoe price" style = "width:200px; background-color:#f4f0ef; font-size:16px; border: 0.5px solid #995b6f;">
           <input id="colorTxt" type="text" class="form-control" name="search" placeholder="Add shoe colour" style = "width:200px; background-color:#f4f0ef; font-size:16px; border: 0.5px solid #995b6f;">
           <input id="sizeTxt" type="text" class="form-control" name="search" placeholder="Add shoe size" style = "width:200px; background-color:#f4f0ef; font-size:16px; border: 0.5px solid #995b6f;">
-          <input id="stockTxt" type="text" class="form-control" name="search" placeholder="Add shoe stock" style = "width:200px; background-color:#f4f0ef; font-size:16px; border: 0.5px solid #995b6f;"><br>
-          <button id="addBtn" type="button" class="btn btn-danger" style="width:170px;font-size:16px; border:1px solid #995b6f;">Add New Stock</button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <input id="stockTxt" type="text" class="form-control" name="search" placeholder="Add shoe stock" style = "width:200px; background-color:#f4f0ef; font-size:16px; border: 0.5px solid #995b6f;">
+          <input id="imageTxt" type="text" class="form-control" name="search" placeholder="Add shoe image" style = "width:200px; background-color:#f4f0ef; font-size:16px; border: 0.5px solid #995b6f;"><br>
+          <button id="addStock" type="button" class="btn btn-danger" style="width:170px;font-size:16px; border:1px solid #995b6f;" data-dismiss="modal">Add New Stock</button>
         </div>
       </div>
 
     </div>
   </div>
-
+</div>
 <script src="shoes.js" charset="utf-8"></script>
 </body>
 

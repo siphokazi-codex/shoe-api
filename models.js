@@ -15,7 +15,8 @@ module.exports = function(mongoURL){
       price: Number,
       color: String,
       size: Number,
-      in_stock: Number
+      in_stock: Number,
+      shoe_image: String
     });
 
    shoesSchema.index({brand : 1}, { unique : true});

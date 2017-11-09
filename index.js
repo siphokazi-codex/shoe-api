@@ -36,6 +36,9 @@ app.use(bodyParser.json())
 //app.get("/", ){});
 
 app.get('/api/shoes', shoesRoutes.getShoes);
+app.get('/api/shoes/brand', shoesRoutes.uniqueBrands);
+app.get('/api/shoes/color', shoesRoutes.uniqueColors);
+app.get('/api/shoes/size', shoesRoutes.uniqueSizes);
 app.get('/api/shoes/brand/:brand', shoesRoutes.checkBrand);
 app.get('/api/shoes/size/:size', shoesRoutes.checkSize);
 app.get('/api/shoes/color/:color', shoesRoutes.checkColor);
