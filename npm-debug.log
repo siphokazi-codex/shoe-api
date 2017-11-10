@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   './formats',
+1 verbose cli   '--save' ]
+2 info using npm@2.15.9
+3 info using node@v4.5.0
+4 verbose install initial load of /home/bootcamp/projects/shoe-catalogue-api/package.json
+5 warn package.json shoe-catalogue-api@1.0.0 No description
+6 warn package.json shoe-catalogue-api@1.0.0 No repository field.
+7 warn package.json shoe-catalogue-api@1.0.0 No README data
+8 verbose installManyTop reading scoped package data from /home/bootcamp/projects/shoe-catalogue-api/node_modules/body-parser/package.json
+9 verbose installManyTop reading scoped package data from /home/bootcamp/projects/shoe-catalogue-api/node_modules/debug/package.json
+10 verbose installManyTop reading scoped package data from /home/bootcamp/projects/shoe-catalogue-api/node_modules/express/package.json
+11 verbose installManyTop reading scoped package data from /home/bootcamp/projects/shoe-catalogue-api/node_modules/express-flash/package.json
+12 verbose installManyTop reading scoped package data from /home/bootcamp/projects/shoe-catalogue-api/node_modules/express-handlebars/package.json
+13 verbose installManyTop reading scoped package data from /home/bootcamp/projects/shoe-catalogue-api/node_modules/express-session/package.json
+14 verbose installManyTop reading scoped package data from /home/bootcamp/projects/shoe-catalogue-api/node_modules/flash/package.json
+15 verbose installManyTop reading scoped package data from /home/bootcamp/projects/shoe-catalogue-api/node_modules/mongodb/package.json
+16 verbose installManyTop reading scoped package data from /home/bootcamp/projects/shoe-catalogue-api/node_modules/mongoose/package.json
+17 info package.json express-flash@0.0.2 No license field.
+18 verbose readDependencies loading dependencies from /home/bootcamp/projects/shoe-catalogue-api/package.json
+19 silly cache add args [ './formats', null ]
+20 verbose cache add spec ./formats
+21 silly cache add parsed spec Result {
+21 silly cache add   raw: './formats',
+21 silly cache add   scope: null,
+21 silly cache add   name: null,
+21 silly cache add   rawSpec: './formats',
+21 silly cache add   spec: '/home/bootcamp/projects/shoe-catalogue-api/formats',
+21 silly cache add   type: 'local' }
+22 error addLocal Could not install /home/bootcamp/projects/shoe-catalogue-api/formats
+23 verbose stack Error: ENOENT: no such file or directory, open '/home/bootcamp/projects/shoe-catalogue-api/formats'
+23 verbose stack     at Error (native)
+24 verbose cwd /home/bootcamp/projects/shoe-catalogue-api
+25 error Linux 4.4.0-97-generic
+26 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "./formats" "--save"
+27 error node v4.5.0
+28 error npm  v2.15.9
+29 error path /home/bootcamp/projects/shoe-catalogue-api/formats
+30 error code ENOENT
+31 error errno -2
+32 error syscall open
+33 error enoent ENOENT: no such file or directory, open '/home/bootcamp/projects/shoe-catalogue-api/formats'
+33 error enoent This is most likely not a problem with npm itself
+33 error enoent and is related to npm not being able to find a file.
+34 verbose exit [ -2, true ]
