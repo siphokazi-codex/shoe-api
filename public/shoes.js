@@ -48,6 +48,52 @@ function getShoes(url, cb) {
   ajaxRequest.send();
 }
 
+//Get the API'S from index.js
+//An API to get all shoes in the databse
+function showStock(){
+getShoes('/api/shoes', function(allShoes) {
+  shoeListElem.innerHTML = shoesTemplate({
+    shoeData: allShoes
+  })
+  shoes = allShoes;
+ })
+}
+
+//An API to get the shoe brand
+function showBrand(){
+getBrand('/api/shoes/brand', function(data) {
+  brandListElem.innerHTML = brandTemplate({
+    brandData: data.brands
+  })
+})
+}
+
+//An API to get the shoe color
+function showColor (){
+getColor('/api/shoes/color', function(data) {
+  colorListElem.innerHTML = colorTemplate({
+    colorData: data.colors
+  })
+})
+}
+
+  //An API to get the shoe size
+function showSize(){
+  getSize('/api/shoes/size', function(data) {
+    sizeListElem.innerHTML = sizeTemplate({
+      sizeData: data.sizes
+    })
+  })
+}
+
+//show all the stock
+showStock();
+//load all the shoe brand
+showBrand();
+//load all the shoe color
+showColor();
+//load all the shoe size
+showSize();
 
 //Function to get all shoe brands
 function getBrand(url, cb) {
@@ -59,6 +105,8 @@ function getBrand(url, cb) {
   }
   ajaxRequest.send();
 }
+
+
 //Function to get all shoe colours
 function getColor(url, cb) {
   var ajaxRequest = new XMLHttpRequest();
@@ -69,20 +117,8 @@ function getColor(url, cb) {
   }
   ajaxRequest.send();
 }
-
 //Function to get all shoe sizes
 function getSize(url, cb) {
-  var ajaxRequest = new XMLHttpRequest();
-  ajaxRequest.open('GET', url);
-  ajaxRequest.onload = function() {
-    var data = JSON.parse(ajaxRequest.responseText);
-    cb(data);
-  }
-  ajaxRequest.send();
-}
-
-//Function to filter shoes according to brand
-function buyShoes(url, cb) {
   var ajaxRequest = new XMLHttpRequest();
   ajaxRequest.open('GET', url);
   ajaxRequest.onload = function() {
@@ -98,6 +134,14 @@ function addShoes(data, cb) {
   qwest
     .post('/api/shoes', data)
     .then(cb);
+    //show all the stock
+    showStock();
+    //load all the shoe brand
+    showBrand();
+    //load all the shoe color
+    showColor();
+    //load all the shoe size
+    showSize();
 }
 
 //Function for my search textbox, search on keyup
@@ -127,51 +171,23 @@ function searchField() {
   searchText.value = "";
 }
 
-//Get the API'S from index.js
-//An API to get all shoes in the databse
-getShoes('/api/shoes', function(allShoes) {
-  shoeListElem.innerHTML = shoesTemplate({
-    shoeData: allShoes
-  })
-  shoes = allShoes;
-})
-
 function buyingShoe(e) {
-
   var _id = e.target.id;
-  console.log(_id);
+  var shoeBrand;
+  var shoePrice = e.target.price;
+  var shoeColor = e.target.color;
+  var shoeSize = e.target.size;
+
+  console.log(shoeBrand);
   $.post({
     url: '/api/shoes/sold/' + _id,
     type: 'POST',
     success: function(purchased) {
-      getShoes();
+       showStock();
     }
   })
 }
 shoeListElem.addEventListener("click", buyingShoe);
-
-//An API to get the shoe brand
-getBrand('/api/shoes/brand', function(data) {
-  brandListElem.innerHTML = brandTemplate({
-    brandData: data.brands
-  })
-})
-
-//An API to get the shoe color
-getColor('/api/shoes/color', function(data) {
-  colorListElem.innerHTML = colorTemplate({
-    colorData: data.colors
-  })
-})
-
-//An API to get the shoe size
-getSize('/api/shoes/size', function(data) {
-  sizeListElem.innerHTML = sizeTemplate({
-    sizeData: data.sizes
-  })
-})
-
-
 
 ////Event Listener that get an API for brand
 filterShoe.addEventListener("click", function() {
@@ -223,7 +239,6 @@ addStock.addEventListener("click", function() {
   var stockV = stockValue.value;
   var imageV = imageValue.value;
 
-  console.log(brandV);
   var newStock = {
     brand: brandV,
     price: priceV,
@@ -234,16 +249,21 @@ addStock.addEventListener("click", function() {
   };
 
   var addAll = addShoes(newStock, function() {
+    //show all the stock
+    showStock();
+    //load all the shoe brand
+    showBrand();
+    //load all the shoe color
+    showColor();
+    //load all the shoe size
+    showSize();
 
-    shoeListElem.innerHTML = shoesTemplate({
-      shoeData: newStock
-    });
+    brandValue.value = "";
+    priceValue.value = "";
+    colorValue.value = "";
+    sizeValue.value = "";
+    stockValue.value = "";
+    imageValue.value = "";
 
-    brandV = "";
-    priceV = "";
-    colorV = "";
-    sizeV = "";
-    stockV = "";
-    imageV = "";
   })
 })
