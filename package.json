@@ -12,6 +12,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "debug": "^3.1.0",
+    "encodeurl": "^1.0.1",
     "express": "^4.13.4",
     "express-flash": "0.0.2",
     "express-handlebars": "^3.0.0",
@@ -19,6 +20,8 @@
     "flash": "^1.1.0",
     "formats": "^0.5.5",
     "mongodb": "^2.2.32",
-    "mongoose": "^4.12.1"
+    "mongoose": "^4.12.1",
+    "setprototypeof": "^1.1.0",
+    "statuses": "^1.4.0"
   }
 }
