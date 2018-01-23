@@ -1,7 +1,7 @@
 # Shoe Catalogue Webapp
 
 ## About the application
-  This application allows the user to browse the shoe shop catalogue for different available shoes in the shop, they can check the brand, color, size and available shoes in stock.  Users can than search for different shoes by keyword, brand, color and size. it gives users an opportunity to purchase a particular shoe they want.
+  This application allows the user to browse the shoe shop catalogue for different shoes available in the shop, they can check the brand, color, size and shoes in stock.  Users can than search for different shoes by keyword, brand, color and size. it than gives users an opportunity to purchase a particular shoe they want.
 
 ## Platforms the application can run on
   - Linux (Ubuntu)
