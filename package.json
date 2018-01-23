@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/mocha/bin/mocha"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "express-session": "^1.15.6",
     "flash": "^1.1.0",
     "formats": "^0.5.5",
+    "mocha": "^3.5.0",
     "mongodb": "^2.2.32",
     "mongoose": "^4.12.1",
     "setprototypeof": "^1.1.0",
