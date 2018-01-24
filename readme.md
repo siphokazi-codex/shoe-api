@@ -19,7 +19,7 @@
   - type npm install (to create node modules for the package.json file in the application).
 
 ## Tests
-  - Tests for the application [![Build Status](https://travis-ci.org/siphokazi-codex/shoe-api.svg?branch=master)](https://travis-ci.org/siphokazi-codex/shoe-apis)
+  - Tests for the application [![Build Status](https://travis-ci.org/siphokazi-codex/shoe-api.svg?branch=master)](https://travis-ci.org/siphokazi-codex/shoe-api)
 
 ## Usage
 ### Output Example
@@ -32,14 +32,14 @@
   - Type nodemon on the terminal
   - Open the browser and type http:/localhost:3001/registration/add [Or you can click the direct link](http:/localhost:3001/registration/add).
 ### How the user can use the application
-  - On the browser, enter the different car registration numbers for the different towns on the textbox provided, after that the user has the opportunity filter the for different towns as displayed on the application.  The user can than select the button for that particular town.
+  - The user can browse the different shoes available in a shop, they can check the brand, color, size and shoes in stock.  Alternatively users can than search for different shoes by keyword. Once they decide to purchase a particular shoe(s), they can press the buy button available on each shoe. 
 
 ## Known Issues
   - The application can only run on Linux Ubuntu platform at the moment, platforms such as macOS, Windows are not yet covered for this application.
 
 ## Contributing
   - Create an issue and describe your idea
-  - Fork it [https://github.com/siphokazi-codex/registration-routes-filter]
+  - Fork it [https://github.com/siphokazi-codex/shoe-api]
   - Create your feature branch (git checkout -b my-new-feature)
   - Commit your changes (git commit -m 'Add some feature')
   - Publish the branch (git push origin my-new-feature)
